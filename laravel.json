@@ -18,7 +18,7 @@
 	"laravel fillable": {
 		"prefix": "laravel-fillable",
 		"body": [
-			"protected $fillable = [",
+			"protected \\$fillable = [",
 				"\t$2'field_name',",
 				"\t$2'field_name',",
 				"\t$2'field_name',",
@@ -34,7 +34,7 @@
 				"\t$2'disease_history' => 'required|string',",
 				"\t$2'current_symptoms' => 'required|string',",
 			"]);",
-			"\t$1if(\\$validator->fails()){",
+			"if(\\$validator->fails()){",
 				"\t$2return response()->json(\\$validator->errors());",
 			"}",
 		],
