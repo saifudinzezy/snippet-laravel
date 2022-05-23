@@ -1,0 +1,78 @@
+{
+	"Model actionINSERT_BATCH": {
+		"scope": "php",
+		"prefix": "ci-aib",
+		"body": [
+			"//controllers/controller_name.php(add)",
+			"public function actionINSERT_BATCH(\\$input) {",
+				"\t$2\\$this->db->insert_batch(\"model_name\", \\$input);",
+			"}"
+		],
+		"description": "actionINSERT_BATCH"
+	},
+	"Model actionINSERT": {
+		"scope": "php",
+		"prefix": "ci-ai",
+		"body": [
+			"//controllers/controller_name.php(add)",
+			"public function actionINSERT(\\$input) {",
+				"\t$2\\$this->db->insert(\"model_name\", \\$input);",
+			"}"
+		],
+		"description": "actionINSERT"
+	},
+	"Model actionCOUNT": {
+		"scope": "php",
+		"prefix": "ci-ac",
+		"body": [
+			"//controllers/controller_name.php(add,edit)",
+			"public function actionCOUNT(\\$where = array()) {",
+				"\t$2\\$this->db->select_count(\"MN.kd_nm\", \"counta\")->from(\"model_name MN\");",
+				"\t$2\\$this->db->where(\\$where);",
+				"\t$2\\$c = \\$this->db->get()->row_array();",
+				"\t$2return \\$c['counta'];",
+			"}"
+		
+		],
+		"description": "actionCOUNT"
+	},
+	"Model actionDELETE": {
+		"scope": "php",
+		"prefix": "ci-ad",
+		"body": [
+			"//controllers/controller_name.php(delete)",
+			"public function actionDELETE(\\$where = array()) {",
+				"\t$2\\$this->db->delete(\"model_name\", \\$where);",
+			"}"
+		],
+		"description": "actionDELETE"
+	},
+	"Model actionRESULT": {
+		"scope": "php",
+		"prefix": "ci-ar",
+		"body": [
+			"public function actionRESULT(\\$select, \\$where = array()) {",
+				"\t$2\\$this->db->select\\($select)->from(\"model_name MN\");",
+				"\t$2\\$this->db->where(\\$where);",
+				"\t$2return \\$this->db->get()->row_array();",
+			"}"
+		],
+		"description": "actionRESULT"
+	},
+	"Model actionVIEW": {
+		"scope": "php",
+		"prefix": "ci-av",
+		"body": [
+     		"//controllers/component.php(view_berkas)",
+			"public function actionVIEW(\\$select, \\$where = array(), $order_by = '') {",
+				"\t$2\\$this->db->select(\\$select)->from(\"model_name MN\");",
+				"\t$2\\$this->db->where(\\$where);",
+				"\t$2if (!empty(\\$order_by)) {",
+					"\t$3\\$this->db->order_by(\\$order_by['field'], $order_by['sort']);",
+				"\t$2}",
+				"\t$2return \\$this->db->get()->result_array();",
+			"}"
+		],
+		"description": "actionVIEW"
+	},
+}
