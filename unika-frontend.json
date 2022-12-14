@@ -1,0 +1,145 @@
+{
+    "Extend parseJson": {
+        "scope": "javascript",
+        "prefix": "fe-extend",
+        "body": [
+            "\\$.extend(scope, \\$.parseJSON(a));"
+        ],
+        "description": "Extend scope parseJson"
+    },
+	"Session Cek": {
+		"prefix": "fe-session_check",
+		"body": [
+		  "if (apps.has_session($SESSION_NAME)) {",
+		  "    //your code",
+		  "} else {",
+		  "    window.location = '?route=login';",
+		  "}"
+		],
+		"description": "Session Cek"
+	},
+	"Ajax Result": {
+        "scope": "javascript",
+        "prefix": "fe-ajax_result",
+        "body": [
+            "\\$.ajax({",
+            "\turl: scope.url + '/result',",
+            "\ttype: 'GET',",
+            "\tbeforeSend: function () {",
+            "\t\t\\$(\".loader\").fadeIn();",
+            "\t}, ",
+            "\tsuccess: function (a) {",
+            "\t\t\\$.extend(scope, \\$.parseJSON(a));",
+            "\t\t// your code",
+            "\t}, error: function (er) {",
+            "\t\tconsole.log(er.responseText);",
+            "\t\t\\$(\".loader\").fadeOut('slow');",
+            "\t}",
+            "});"
+        ],
+        "description": "Ajax Result "
+    },
+	"Ajax serializeArray": {
+        "scope": "javascript",
+        "prefix": "fe-ajax_seri",
+        "body": [
+            " apps.processing.setTagName(\\$(f).find('[type=\"submit\"]'));",
+            "\t\t\t\t\tvar post = \\$(f).serializeArray();",
+            "\t\t\t\t\tpost.push({",
+            "\t\t\t\t\t\tname: 'nom_wd',",
+            "\t\t\t\t\t\tvalue: apps.setNumber(nom_wd)",
+            "\t\t\t\t\t});",
+            "\t\t\t\t\t\\$(f).ajaxSubmit({",
+            "\t\t\t\t\t\ttype: 'POST',",
+            "\t\t\t\t\t\tdata: post,",
+            "\t\t\t\t\t\tbeforeSend: function () {",
+            "\t\t\t\t\t\t\tapps.processing.start();",
+            "\t\t\t\t\t\t}"
+        ],
+        "description": "modify post data ajax serialize"
+    },
+    "Set Default Selected Option": {
+        "scope": "javascript",
+        "prefix": "fe-seldef",
+        "body": [
+            "\\$(\"#kd_rek_cabmitra\").html('<option value=\"'+d.kd_rek_cabmitra+'\" selected>'+d.rek_tujuan+'</option>');",
+            "\t\t\t\t\\$('.select_kd_rek_isp').select2().val(d.kd_rek_isp);"
+        ],
+        "description": "set default select option"
+    },
+    "add apps_component.js default select option": {
+        "scope": "javascript",
+        "prefix": "fe-comp_ajax_selopt",
+        "body": [
+            "apps.select_kd_rek_cabmitra = function (kd_cabmitra, kd_rek_cabmitra = null) {",
+            "\t\\$.ajax({",
+            "\t\turl: apps.serverUrl + '/component/view_bank_rek_cabmitra',",
+            "\t\ttype: 'GET',",
+            "\t\tdata: {",
+            "\t\t\tkd_cabmitra: kd_cabmitra",
+            "\t\t},",
+            "\t\tbeforeSend: function () {",
+            "\t\t\t\\$('.select_kd_rek_cabmitra').html('<option value=\"\">Semua Rekening</option>');",
+            "\t\t},",
+            "\t\tsuccess: function (a) {",
+            "\t\t\tvar d = \\$.parseJSON(a);",
+            "\t\t\t\\$.each(d.bank_rek, function (k, v) {",
+            "\t\t\t\tif (kd_rek_cabmitra !== null) {",
+            "\t\t\t\t\tif (kd_rek_cabmitra == v.kd_rek) {",
+            "\t\t\t\t\t\t\\$('.select_kd_rek_cabmitra').append('<option value=\"' + v.kd_rek + '\" selected>' + v.rek_tujuan + '</option>');",
+            "\t\t\t\t\t} else {",
+            "\t\t\t\t\t\t\\$('.select_kd_rek_cabmitra').append('<option value=\"' + v.kd_rek + '\">' + v.rek_tujuan + '</option>');",
+            "\t\t\t\t\t}",
+            "\t\t\t\t} else {",
+            "\t\t\t\t\t\\$('.select_kd_rek_cabmitra').append('<option value=\"' + v.kd_rek + '\">' + v.rek_tujuan + '</option>');",
+            "\t\t\t\t}",
+            "\t\t\t});",
+            "\t\t},",
+            "\t\terror: function (er) {",
+            "\t\t\tconsole.log(er.responseText);",
+            "\t\t}",
+            "\t});",
+            "};"
+        ],
+        "description": "set default select option by kd"
+    },
+    "keyup input": {
+        "scope": "javascript",
+        "prefix": "fe-input_keyup",
+        "body": [
+            "\\$('input[name=\"nom_wd\"]').on('keyup', function () {",
+            "\t\t\t\tlet nom_wd = apps.setNumber(\\$(this).val());",
+            "\t",
+            "\t\t\t\t// saldo akhir",
+            "\t\t\t\t\\$('.sa').html('Rp. '+apps.setRupiah(nom_wd));",
+            "\t\t\t});"
+        ],
+        "description": "automatis update data input keyup"
+    },
+    "Mengambil session": {
+        "scope": "javascript",
+        "prefix": "fe-session_get",
+        "body": [
+            "apps.get_session('$SESSION_NAME')"
+        ],
+        "description": "mengambil session login"
+    },
+    "Init select2": {
+        "scope": "javascript",
+        "prefix": "fe-init_select2",
+        "body": [
+            "\\$('.select_kd_rek_cabmitra').select2();"
+        ],
+        "description": "initial select2"
+    },
+    "init rupiah": {
+        "scope": "javascript",
+        "prefix": "fe-init_rupiah",
+        "body": [
+            " \"priceformat\",",
+            "\t\t\t\"accounting\"",
+            "\t\t\tapps.create_priceformat();"
+        ],
+        "description": "initial price format rupiah"
+    }
+}
