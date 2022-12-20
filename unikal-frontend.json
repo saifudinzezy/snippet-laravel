@@ -216,5 +216,25 @@
             "\t\tapps.datatable_export(scope.table_dosen, '#export_dosen');"
         ],
         "description": "export datatable"
+    },
+    "reload datatable": {
+        "scope": "javascript",
+        "prefix": "fe-datatable_dismiss_modal",
+        "body": [
+            " //menutup form dosen",
+            "\t\t\\$('#modal_dosen [data-dismiss=\"modal\"]').on('click', function () {",
+            "\t\t\tscope.table_dosen.ajax.reload();",
+            "\t\t\tscope.validate_dosen.resetForm();",
+            "\t\t});"
+        ],
+        "description": "dismiss modal and reload ajax datatable"
+    },
+    "tringger change": {
+        "scope": "javascript",
+        "prefix": "fe-trigger_change",
+        "body": [
+            " \\$('select[name=\"kd_prodi\"]').trigger('change');"
+        ],
+        "description": "tringger changed"
     }
 }
