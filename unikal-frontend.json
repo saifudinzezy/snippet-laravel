@@ -301,5 +301,107 @@
             "\t\t});"
         ],
         "description": "validasi form standart"
+    },
+    "add url to form": {
+        "scope": "javascript",
+        "prefix": "fe-form_add_url",
+        "body": [
+            "\\$('#form_dosen').clearForm().attr('action', scope.url + '/add');"
+        ],
+        "description": "menambahkan url /add pada form"
+    },
+    "parse object to json": {
+        "scope": "javascript",
+        "prefix": "fe-parse_json",
+        "body": [
+            "\\$.parseJSON(a)"
+        ],
+        "description": "parse object to json"
+    },
+    "select on change": {
+        "scope": "javascript",
+        "prefix": "fe-select_on_change",
+        "body": [
+            "\\$('select[name=\"kd_tahun\"]').on('change', function () {",
+            "\t\t\tconsole.log(\\$(this).val());",
+            "\t\t});"
+        ],
+        "description": "select option on change"
+    },
+    "add component": {
+        "scope": "javascript",
+        "prefix": "fe-component_add",
+        "body": [
+            "apps.component([",
+            "\t\t\tapps.viewUrl + \"/admin/add_daftar_kriteria/tmp_kriteria\"",
+            "\t\t]);"
+        ],
+        "description": "menambahkan component"
+    },
+    "init component": {
+        "scope": "javascript",
+        "prefix": "fe-component_init",
+        "body": [
+            "\\$('#view_penguji_ujian_bobot').html(\\$.tmpl(\\$('#tmp_penguji_ujian_bobot'), d));"
+        ],
+        "description": "init component"
+    },
+    "ajax serialize": {
+        "scope": "javascript",
+        "prefix": "fe-ajax_serialize_array",
+        "body": [
+            "var post = \\$(f).serializeArray();",
+            "\t\t\t\t\t\t\t\t\tpost.push({",
+            "\t\t\t\t\t\t\t\t\t\tname: 'bimbingan',",
+            "\t\t\t\t\t\t\t\t\t\tvalue: JSON.stringify(bimbingan)",
+            "\t\t\t\t\t\t\t\t\t});"
+        ],
+        "description": "serialize json array "
+    },
+    "add message notif": {
+        "scope": "javascript",
+        "prefix": "fe-message",
+        "body": [
+            " apps.message({",
+            "\t\t\t\t\ttype: 'warning',",
+            "\t\t\t\t\ttitle: 'Peringatan',",
+            "\t\t\t\t\ttext: 'Pesan notifikasi anda'",
+            "\t\t\t\t});"
+        ],
+        "description": "add message notification"
+    },
+    "klik data table": {
+        "scope": "javascript",
+        "prefix": "fe-datatable_click",
+        "body": [
+            " //ketika memilih data penilaian",
+            "\t\t\\$('#table_penilaian tbody').on('click', 'tr', function () {",
+            "\t\t\t\\$('#table_penilaian tbody tr.bg-warning').removeClass('bg-warning');",
+            "\t\t\t\\$(this).addClass('bg-warning');",
+            "\t\t\t\\$('#edit_penilaian,#del_penilaian').prop('disabled', false);",
+            "\t\t});"
+        ],
+        "description": "klik datatable"
+    },
+    "add form edit": {
+        "scope": "javascript",
+        "prefix": "fe-form_edit_url",
+        "body": [
+            " var d = scope.table_hibah.row('#table_hibah tbody tr.bg-warning').data();",
+            "\t\t\t\\$('#form_penilaian').clearForm()",
+            "\t\t\t\t.attr('action', scope.url + '/edit');",
+            "\t\t\tapps.render_form('#form_penilaian', d);"
+        ],
+        "description": "add edit url form"
+    },
+    "redirect route": {
+        "scope": "javascript",
+        "prefix": "fe-redirect_route",
+        "body": [
+            "apps.processing.setTagName(this);",
+            "\t\t  apps.processing.start();",
+            "\t\t  apps.redirect('?route=adm-add_daftar_kriteria&kd_format_penilaian='+d.kd_format_penilaian);"
+        ],
+        "description": "redirect route"
     }
 }
