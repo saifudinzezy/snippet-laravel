@@ -434,7 +434,7 @@
             "\t\t\t\t\t\t\t}, error: function (er) {",
             "\t\t\t\t\t\t\t\tapps.processing.finish();",
             "\t\t\t\t\t\t\t\tconsole.log(er.responseText);",
-            "\t\t\t\t\t\t\t\tapps.messages({",
+            "\t\t\t\t\t\t\t\tapps.message({",
             "\t\t\t\t\t\t\t\t\ttype: 'error',",
             "\t\t\t\t\t\t\t\t\ttitle: 'Peringatan',",
             "\t\t\t\t\t\t\t\t\ttext: 'Penghapusan gagal, data unit : <b>' + d.nm_unit + '</b> sudah digunakan'",
@@ -489,5 +489,14 @@
             "})"
         ],
         "description": "pencarian di datatable"
+    },
+    "get data select option on data type": {
+        "scope": "javascript",
+        "prefix": "fe-select_get_data",
+        "body": [
+            "let data = \\$(this).find(':selected');",
+            "\t\t\tconsole.log(data.data('jns_user'));"
+        ],
+        "description": "mengambil data type di select option"
     }
 }
