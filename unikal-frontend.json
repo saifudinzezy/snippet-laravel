@@ -469,7 +469,9 @@
             "//destroy validasi form",
             "scope.validate_komplen.destroy();",
             "//destroy select on change",
-            "\\$('select[name=\"sstatus_veri\"]').off('change');"
+            "\\$('select[name=\"sstatus_veri\"]').off('change');",
+            "//destroy priceformat rupiah",
+            "apps.destroy_priceformat();"
         ],
         "description": "menghapus semua event"
     },
@@ -498,5 +500,50 @@
             "\t\t\tconsole.log(data.data('jns_user'));"
         ],
         "description": "mengambil data type di select option"
+    },
+    "show total bobot": {
+        "scope": "javascript",
+        "prefix": "fe-show_total_bobot",
+        "body": [
+            " show_total_bobot: function () {",
+            "\t\t\tvar total_bobot = 0;",
+            "\t\t\t\\$('.bobot').each(function () {",
+            "\t\t\t\tvar bobot = \\$(this).val().length > 0 ? parseFloat(\\$(this).val()) : 0;",
+            "\t\t\t\ttotal_bobot = total_bobot + bobot;",
+            "\t\t\t});",
+            "\t\t\treturn total_bobot;",
+            "\t\t}"
+        ],
+        "description": "mengambil total bobot"
+    },
+    "select default option": {
+        "scope": "javascript",
+        "prefix": "fe-select_default",
+        "body": [
+            "\\$('#form_skim select[name=\"kd_dana\"]').html('<option value=\"' +d.kd_dana + '\">' + d.nm_hibah + '/'+d.tahun+'</option>');"
+        ],
+        "description": "select default option"
+    },
+    "fe-tag_dom": {
+        "scope": "javascript",
+        "prefix": "fe-tag_dom",
+        "body": [
+            "//menampilkan form tambah cpl kategori",
+            "\\$(apps._tagDOM).on('click', '.add_kategori', function () {",
+            "\t// mengambil data json",
+            "\tlet d = \\$.parseJSON(Base64.decode(\\$(this).data('json')));",
+            "\t// mengambil data kd_cpl",
+            "\tlet kd_cpl = \\$(this).data('kd_cpl');",
+            "});"
+        ],
+        "description": "membuat fungsi global tagdom"
+    },
+    "fe-data_json": {
+        "scope": "html",
+        "prefix": "fe-data_json",
+        "body": [
+            "data-json=\"${Base64.encode(JSON.stringify(kategori[indx]))}\""
+        ],
+        "description": "menambahkan data json ke html"
     }
 }
