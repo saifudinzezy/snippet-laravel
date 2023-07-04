@@ -21,6 +21,18 @@
 		],
 		"description": "actionINSERT"
 	},
+	"Model actionINSERT return ID": {
+		"scope": "php",
+		"prefix": "ci-aid",
+		"body": [
+			"//controllers/controller_name.php(add)",
+			"public function actionINSERT(\\$input) {",
+				"\t$2\\$this->db->insert(\"model_name\", \\$input);",
+				"\t$2return \\$this->db->insert_id();",
+			"}"
+		],
+		"description": "actionINSERT"
+	},
 	"Model actionCOUNT": {
 		"scope": "php",
 		"prefix": "ci-ac",
@@ -52,7 +64,7 @@
 		"prefix": "ci-ar",
 		"body": [
 			"public function actionRESULT(\\$select, \\$where = array()) {",
-				"\t$2\\$this->db->select\\($select)->from(\"model_name MN\");",
+				"\t$2\\$this->db->select(\\$select)->from(\"model_name MN\");",
 				"\t$2\\$this->db->where(\\$where);",
 				"\t$2return \\$this->db->get()->row_array();",
 			"}"
@@ -63,16 +75,40 @@
 		"scope": "php",
 		"prefix": "ci-av",
 		"body": [
-     		"//controllers/component.php(view_berkas)",
-			"public function actionVIEW(\\$select, \\$where = array(), $order_by = '') {",
+     		"//controllers/controller_name.php(view_berkas)",
+			"public function actionVIEW(\\$select, \\$where = array(), \\$order_by = '') {",
 				"\t$2\\$this->db->select(\\$select)->from(\"model_name MN\");",
 				"\t$2\\$this->db->where(\\$where);",
 				"\t$2if (!empty(\\$order_by)) {",
-					"\t$3\\$this->db->order_by(\\$order_by['field'], $order_by['sort']);",
+					"\t$3\\$this->db->order_by(\\$order_by['field'], \\$order_by['sort']);",
 				"\t$2}",
 				"\t$2return \\$this->db->get()->result_array();",
 			"}"
 		],
 		"description": "actionVIEW"
+	},
+	"Model actionUPDATE": {
+		"scope": "php",
+		"prefix": "ci-au",
+		"body": [
+     		"//controllers/controller_name.php(edit)",
+			"public function actionUPDATE(\\$input, \\$where = array()) {",
+				"\t$2\\$this->db->update(\"model_name\", \\$input, \\$where);",
+			"}"
+		],
+		"description": "actionUPDATE"
+	},
+	"Model actionTOTAL": {
+		"scope": "php",
+		"prefix": "ci-at",
+		"body": [
+     		"//controllers/controller_name.php(edit)",
+			"public function actionTotal(\\$select, \\$param) {",
+				"\t$2\\$this->db->select(\\$select);",
+				"\t$2\\$this->generateQuery(\\$param);",
+				"\t$2return \\$this->db->get()->row_array();",
+			"}",
+		],
+		"description": "actionTOTAL"
 	},
 }
